@@ -104,7 +104,7 @@ ltr_c [options] [ c_compiler_args... | ltr_c_sources... ]
 ```
 
 ### C Compiler Arguments
-Any argument that is not understood as a file or a LTR-C option will be assumed to be a native C compiler argument and will be passed verbose to the compiler
+Any argument that is not understood as a file or a LTR-C option will be assumed to be a native C compiler argument and will be passed verbose to the compiler.
 
 ### Compilation Sources
 Any valid file paths ending with `.c`, `.C`, `.ltr`, `.LTR`, `.LTR_C` or `.ltr_c` will be transpiled back to C temporarily and then passed to the native C compiler.
