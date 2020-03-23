@@ -24,36 +24,36 @@ int main() {
 As you can see, regular C is boring and trivial.
 
 ### Improved LTR-C example
-```ltr-c 
-# i  }
-i n  
-n t  
-c    
-l mp 
-u ar 
-d ii 
-e nn 
-  (t 
-< )f 
-s  ( 
-t {" 
-d  H 
-i  e 
-o  l 
-.  l 
-h  o 
->    
-   W 
-   o 
-   r 
-   l 
-   d 
-   ! 
-   \ 
-   n 
-   " 
-   ) 
-   ; 
+```ltr-c
+# i }
+i n
+n t
+c
+l mp
+u ar
+d ii
+e nn
+  (t
+< )f
+s  (
+t {"
+d  H
+i  e
+o  l
+.  l
+h  o
+>
+   W
+   o
+   r
+   l
+   d
+   !
+   \
+   n
+   "
+   )
+   ;
 ```
 As it should be evident this is *clearly* the definitive way to write C.
 
@@ -78,25 +78,46 @@ ltr_c [options] [ c_compiler_args... | ltr_c_sources... ]
 ```
 ### Options
 ```
-    --set-compiler compiler  Set the compiler command to be used, if not set 
-                             will try to use gcc, clang or the CC environment 
+    --version                Display version number and quit.
+    -v
+
+    --help                   Display help dialog and quit.
+    -h
+
+    --set-compiler compiler  Set the compiler command to be used, if not set
+                             will try to use gcc, clang or the CC environment
                              variable.
 
-    --transpile              Do not compile, just transpile, should not be used 
-                             with set-compiler, by default creates a new file 
-                             with the same name as the original and appends 
+    --transpile              Do not compile, just transpile, should not be used
+                             with set-compiler, by default creates a new file
+                             with the same name as the original and appends
                              the ".ltr" extension to it.
 
     --in-place               Transpile without creating a new file, overwrite
-                             transpiled file instead.
+                             transpiled file instead, to be used with transpile.
 
     --silent                 Don't produce any output to stdout.
 
     --debug-only             Don't do nothing, just print debug information.
+
+    --b4 command             Puts 'command' as an argument before every file.
 ```
 
 ### C Compiler Arguments
 Any argument that is not understood as a file or a LTR-C option will be assumed to be a native C compiler argument and will be passed verbose to the compiler
 
-### LTR-C Sources
-Any valid file paths will be transpiled back to C temporarily and then passed to the native C compiler.
+### Compilation Sources
+Any valid file paths ending with `.c`, `.C`, `.ltr`, `.LTR`, `.LTR_C` or `.ltr_c` will be transpiled back to C temporarily and then passed to the native C compiler.
+
+**NOTE:** A `.c` file extension is not guaranteed for the temporary file so you may need to add some commands before your file names. If you wanted to use gcc, for example, you'd need `-x c` before every file name (if you don't set-compiler this is done automatically):
+```bash
+ltr_c --set-compiler gcc --b4 "-x c" file1.ltr file2.ltr
+```
+
+### Transpillation Sources
+Any valid file paths ending with `.c` or `.C` will be transpiled into a `.ltr` file or transpiled in-place if the corresponding option is set.
+
+## Building
+Building ltr_c is easy, just compile `ltr_c.cpp` with a c++ compiler that supports the c++17 standard.
+
+If you're a unix user you can also use `make build` to build ltr_c automatically and `make install` to install the binary executables and the man pages.

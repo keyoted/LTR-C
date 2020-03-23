@@ -1,0 +1,65 @@
+.TH ltr_c 1 "2020 Mar 22" 1.0.0
+.SH NAME
+LTR-C - Left to right C
+
+.SH SYNOPSIS
+ltr_c [options] [ c_compiler_args... | ltr_c_sources... ]
+
+.SH DESCRIPTION
+Transpiler for ltr source files.
+.PP
+Regular C is written in a top-to-bottom manner, LTR-C is written left-to-write, this tool is a transpiller, it is however able to call on your favorite C compiler in order to work seamlessly with your favorite build system.
+
+.SH OPTIONS
+.IP "--version -v"
+Display version number and quit.
+
+.IP "--help -h"
+Display help dialog and quit.
+
+.IP "--set-compiler compiler"
+Set the compiler command to be used, if not set will try to use gcc, clang or the CC environment variable.
+
+.IP --transpile
+Do not compile, just transpile, should not be used with set-compiler, by default creates a new file with the same name as the original and appends the ".ltr" extension to it.
+
+.IP --in-place
+Transpile without creating a new file, overwrite transpiled file instead, to be used with transpile.
+
+.IP --silent
+Don't produce any output to stdout.
+
+.IP --debug-only
+Don't do nothing, just print debug information.
+
+.IP "--b4 command"
+Puts 'command' as an argument before every file.
+
+.SH ENVIRONMENT
+.I CC
+.RS
+If no compiler was set and not on transpiling mode $CC will be used as the compiler.
+.RE
+
+.SH DIAGNOSTICS
+.I "The following diagnostics may be issued on stderr:"
+.I "Bad arguments"
+.RS
+When set-compiler and transpile are set or when transpile isn't set and in-place is set.
+.RE
+.I "Compiler errors"
+.RS
+Any compiler error may be written to stderr
+.RE
+.PP
+.I "The following diagnostics may be issued on stdout:"
+.I "General file errors"
+.RS
+When a file fails to open.
+.RE
+
+.SH AUTHOR
+Neondregs (André Botelho) <neondregs@gmail.com>
+
+.SH SEE ALSO
+gcc(1), clang(1)
