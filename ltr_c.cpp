@@ -68,7 +68,7 @@ DIAGNOSTICS
               When a file fails to open.
 
 AUTHOR
-       Neondregs (André Botelho) <neondregs@gmail.com>
+       Keyoted (André Botelho) <keyoted@gmail.com>
 
 SEE ALSO
        gcc(1), clang(1)
